@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouveau Client</title>
+    <link rel="stylesheet" href="rekonektSuivi.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="rekonektSuivi.js" defer></script>
+</head>
+
+<body>
+    <header>
+<style>
+/* Page spécifique: nouveauClient.css */
+
+.container-nouveau-client {
+    background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 4% auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-between; /* Espace entre les sections */
+    gap: 20px; /* Espace entre les sections */
+}
+
+.form-nouveau-client {
+    flex: 1; /* Les formulaires prendront une largeur égale */
+    min-width: 45%; /* Minimum de largeur pour éviter le chevauchement */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la taille totale */
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+input[type="password"],
+input[type="numTel"],
+input[type="number"] {
+    width: calc(100% - 30%); /* Ajuste la largeur des champs pour remplir l'espace disponible */
+    padding: 0.5rem; /* Réduire le padding pour les champs */
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem; /* Réduire la taille de la police pour les champs */
+    color: #0a0202;
+    transition: 0.5s;
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la taille totale */
+}
+
+textarea.com {
+    height: 120px;
+}
+
+input[type="submit"] {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.inf {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.inf label {
+    width: 30%; /* Largeur du label */
+    margin-right: 10px; /* Espace entre le label et le champ */
+    text-align: right; /* Alignement du texte à droite */
+    font-size: 1rem;
+}
+
+.cb {
+    width: auto;
+}
+
+.check, .option {
+    margin-top: 1%;
+    display: flex;
+    align-items: center;
+}
+
+input[type="number"] {
+    text-align: right;
+    padding-right: 10px;
+    width: calc(100% - 30%); /* Ajuste la largeur à 100% moins la largeur des labels */
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la taille totale */
+}
+
+.but {
+    width: 10%; /* Ajuste la largeur à 100% */
+    background-color: #046fe9;
+    margin-top: 3%;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-family: 'Bookman, URW Bookman L, serif';
+    cursor: pointer;
+}
+
+.button {
+    width: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+}
+
+.st {
+    font-size: 1.5em;
+    margin-bottom: 1rem;
+    text-align: center; /* Centrer le titre */
+}
+
+#dm {
+    position: absolute;
+    bottom: 3%;
+}
+
+/* Effet de fondu */
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pour les navigateurs basés sur WebKit (Chrome, Safari, etc.) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+form {
+  flex: 1; /* Les formulaires prendront une largeur égale */
+  max-width: 93%; /* Limite la largeur des formulaires pour éviter qu'ils ne se chevauchent */
+  background-color: #fff;
+  border: 10px solid #ccc;
+  border-radius: 5px;
+  padding: 87px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style spécifique pour les champs select */
+#letype,
+#lamarque,
+#lemodele,
+#letat {
+    width: 150px; /* Ajuster cette valeur pour réduire la longueur */
+    padding: 0.25rem; /* Réduire le padding pour les champs select */
+    font-size: 0.85rem; /* Réduire la taille de la police pour les champs select */
+    margin-bottom: 1rem; /* Ajouter un espacement en bas */
+    border: 1px solid #ddd; /* Bordure fine */
+    border-radius: 5px; /* Bordure arrondie */
+}
+
+
+</style>
+    </header>
+    <nav class="menu">
+        <div class="navbar-logo">
+            <a href="#"><img src="logo.png" alt="Logo"></a>
+        </div>
+        <ul class="menu-links">
+            <li><a href="nouveauClient.html">Nouveau client</a></li>
+            <li><a href="reparationsEnCours.html">Réparations en Cours </a></li>
+             <li><a href="reparationsEnAttentes.html">Réparations en Attentes </a></li>
+             <li><a href="reparationsTerminees.html">Réparations Terminées </a></li>
+            <li><a href="rechercheClient.html">Clients </a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
+        </div>
+    </nav>
+    <p><br></p>
+
+    <div class="container">
+        <div class="infosAppareil form-nouveau-client">
+            <h2 class="st">Information Appareil</h2>
+            <form id="formulaire">
+                <div class="inf">
+                    <label for="num_suivi">Numéro de Suivi</label>
+                    <input type="number" id="num_suivi" name="num_suivi" readonly/>
+                </div>
+                <div class="inf">
+                    <label for="letype">Type</label>
+                    <select id="letype" name="letype">
+                        <option value="neuf"></option>
+                        <option value="smartphone">Smartphone</option>
+                        <option value="tablet">Tablette</option>
+                        <option value="laptop">Ordinateur</option>
+                        <option value="console">Console</option>
+                    </select>
+                </div>
+                <div class="inf">
+                    <label for="lamarque">Marque</label>
+                    <select id="lamarque" name="lamarque">
+                        <option value="neuf"></option>
+                        <option value="apple">Apple</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="huawei">Huawei</option>
+                    </select>
+                </div>
+                <div class="inf">
+                    <label for="lemodele">Modèle</label>
+                    <select id="lemodele" name="lemodele">
+                        <option value=""></option>
+                        <option value="galaxy_s20">Galaxy S20</option>
+                        <option value="iphone_14_pro_max">iPhone 14 Pro Max</option>
+                    </select>
+                </div>
+                <div class="inf">
+                    <label for="letat">État</label>
+                    <select id="letat" name="letat">
+                        <option value=""></option>
+                        <option value="grade_a">Grade A</option>
+                        <option value="grade_b">Grade B</option>
+                        <option value="grade_c">Grade C</option>
+                    </select>
+                </div>
+                <div class="inf">
+                    <label for="idAppareil">N° SERIE / IMEI : </label>
+                    <input type="text" id="idAppareil" name="idAppareil"/>
+                </div>
+                <div class="inf">
+                    <label for="nomUt">Nom d'Utilisateur</label>
+                    <input type="text" id="nomUt" name="nomUt"/>
+                </div>
+                <div class="inf">
+                    <label for="mtp">Mot de Passe</label>
+                    <input type="text" id="mtp" name="mtp"/>
+                </div>
+                <div class="inf">
+                    <label for="consta">Panne Constatée</label>
+                    <input type="text" id="consta" name="consta">
+                </div>
+                <div class="inf">
+                    <label for="Proposition">Réparation Proposée</label>
+                    <input type="text" id="Proposition" name="Proposition">
+                </div>
+                <div class="inf">
+                    <label for="prix">Prix</label>
+                    <input type="number" id="prix" name="prix" step="0.01">
+                    <span>€</span>
+                </div>
+                <div class="inf">
+                    <label for="acompte">Acompte</label>
+                    <input type="number" id="acompte" name="acompte" step="0.01">
+                    <span>€</span>
+                </div>
+                <div id="choix" class="inf">
+                    <div class="check">
+                        <label for="accord">Accord Client</label>
+                        <input type="radio" value="accordOui" id="accordOui" name="accord"/><label class="boxcil" for="accordOui">OUI</label>
+                        <input type="radio" value="accordNon" id="accordNon" name="accord"/><label class="boxcil" for="accordNon">NON</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="infosClient form-nouveau-client">
+            <h2 class="st">Information Client</h2>
+            <form id="clientForm">
+                <div id="formulaire">
+                    <div id="choix" class="inf">
+                        <div class="check">
+                            <label for="civilite">Civilité</label>
+                            <input type="radio" value="genreFem" id="genreFem" name="civilite"/><label class="boxcil" for="genreFem">Mme</label>
+                            <input type="radio" value="genreMas" id="genreMas" name="civilite"/><label class="boxcil" for="genreMas">M.</label>
+                        </div>
+                    </div>
+                    <div class="inf">
+                        <label for="leNom">Nom</label>
+                        <input type="text" id="leNom" name="leNom"/>
+                    </div>
+                    <div class="inf">
+                        <label for="lePrenom">Prénom</label>
+                        <input type="text" id="lePrenom" name="lePrenom"/>
+                    </div>
+                    <div class="inf">
+                        <label for="idInscription">Identifiant Client</label>
+                        <input type="text" id="idInscription" name="idInscription"/>
+                    </div>
+                    <div class="inf">
+                        <label for="numTel">Numéro de Téléphone</label>
+                        <input type="text" id="numTel" name="numTel"/>
+                    </div>
+                    <div class="inf">
+                        <label for="email">Adresse email</label>
+                        <input type="email" id="email" name="email" placeholder="Adresse@email.com" size="30" required>
+                    </div>
+                    <div class="inf">
+                        <label for="noteClient">Commentaire Client</label>
+                        <input type="text" id="noteClient" name="noteClient" class="com"/>
+                    </div>
+                    <div class="inf">
+                        <label for="noteInterne">Note Interne</label>
+                        <input type="text" id="noteInterne" name="noteInterne" class="com"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="boutonValidation" class="button">
+        <button class="but" id="validerBtn">Envoyer</button>
+    </div>
+    
+    <script>
+        $(document).ready(function () {
+            $('#validerBtn').click(function (e) {
+                e.preventDefault();
+                const appareilForm = $('#appareilForm').serializeArray();
+                const clientForm = $('#clientForm').serializeArray();
+                const formData = {};
+
+                $.each(appareilForm, function (i, field) {
+                    formData[field.name] = field.value;
+                });
+
+                $.each(clientForm, function (i, field) {
+                    formData[field.name] = field.value;
+                });
+
+                console.log('Sending data:', formData); // Log to check the form data
+
+                // Envoie les données au serveur
+                $.ajax({
+                    type: "POST",
+                    url: "/addClient",
+                    data: formData,
+                    success: function(response) {
+                        // Rediriger vers la page des réparations en cours
+                        window.location.href = 'reparationsEnCours.html';
+                    },
+                    error: function(err) {
+                        console.error('Erreur lors de l\'ajout du client:', err); // Log error
+                        alert('Erreur lors de l\'ajout du client: ' + err.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

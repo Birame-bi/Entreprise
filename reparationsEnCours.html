@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réparations en cours</title>
+    <link rel="stylesheet" href="rekonektSuivi.css">
+</head>
+
+<body class="global">
+    <header>
+    </header>
+    <nav class="menu">
+        <div class="navbar-logo">
+            <a href="#"><img src="logo.png" alt="Logo"></a>
+        </div>
+        <ul class="menu-links">
+            <li><a href="nouveauClient.html">Nouveau client</a></li>
+            <li><a href="reparationsEnCours.html">Réparations en Cours </a></li>
+             <li><a href="reparationsEnAttentes.html">Réparations en Attentes </a></li>
+             <li><a href="reparationsTerminees.html">Réparations Terminées </a></li>
+            <li><a href="rechercheClient.html">Clients </a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
+        </div>
+    </nav>
+    <p><br></p>
+    
+    <div class="grid-container">
+        <div class="ticket">
+            <div class="compartment">
+                <label class="lab" for="leNom">Nom Prénom:</label>
+                <span class="spa" id="nom-prenom"></span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="n-tel">N Tel:</label>
+                <span class="spa" id="n-tel"></span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="num_suivi">Numéro Commande:</label>
+                <span class="spa" id="num_suivi"><a href="espaceClient.html"></a></span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="idInscription">ID CLIENT:</label>
+                <span class="spa" id="id-client"></span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="date">Date Dépôt:</label>
+                <input type="date" id="date-depot" name="myInput">
+            </div>
+            <div class="compartment">
+                <label class="lab" for="idAppareil">IMEI:</label>
+                <span class="spa" id="imei"></span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="Proposition">REPARATIONS:</label>
+                <span class="spa" id="reparations"></span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="resultat">RESULTAT:</label>
+            </div>
+            <div class="grid">
+                <div class="voyant">
+                    <div class="compartmentvoyant">
+                        <div class="bulle vert" onclick="selectBulle('Réparé')" onmouseover="showMessage(event)" data-message="Réparé"></div>
+                    </div>
+                    <div class="compartment">
+                        <div class="bulle orange" onclick="selectBulle('En Attente Piece')" onmouseover="showMessage(event)" data-message="En Attente Pièce"></div>
+                    </div>
+                    <div class="compartment">
+                        <a href="reparationsTerminees.html">
+                            <div class="bulle rouge" onclick="selectBulle('Hors Service')" onmouseover="showMessage(event)" data-message="Hors Service"></div>
+                        </a>
+                    </div>                    
+                    <div class="compartment">
+                        <a href="reparationsEnAttentes.html">
+                            <div class="bulle violet" onclick="selectBulle('En Cours de Diag ')" onmouseover="showMessage(event)" data-message="En Cours de Diagnostic"></div>
+                        </a>
+                    </div>
+                    <div class="compartment">
+                        <div class="bulle gris" onclick="selectBulle('Pris en Charge')" onmouseover="showMessage(event)" data-message="Pris en Charge"></div>
+                    </div>
+                    <div class="compartment">
+                        <div class="bulle jaune" onclick="selectBulle('En Attente Accord')" onmouseover="showMessage(event)" data-message="En Attente Accord"></div>
+                    </div>
+                    <div class="compartment">
+                        <div class="bulle bleu" onclick="selectBulle('En Cours De Rep')" onmouseover="showMessage(event)" data-message="En Cours de Réparation"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="messageBox" class="message-box"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const formData = JSON.parse(localStorage.getItem('formData'));
+            if (formData) {
+                document.getElementById('nom-prenom').textContent = `${formData['leNom']} ${formData['lePrenom']}`;
+                document.getElementById('n-tel').textContent = formData['numTel'];
+                document.getElementById('num_suivi').querySelector('a').textContent = formData['num_suivi'];
+                document.getElementById('id-client').textContent = formData['idInscription'];
+                document.getElementById('date-depot').value = new Date().toISOString().split('T')[0];
+                document.getElementById('imei').textContent = formData['idAppareil'];
+                document.getElementById('reparations').textContent = formData['Proposition'];
+            }
+        });
+
+        // JavaScript pour afficher le message au survol des bulles
+        function showMessage(event) {
+            const message = event.target.getAttribute('data-message');
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = message;
+            messageBox.style.display = 'block';
+            messageBox.style.top = `${event.clientY + 10}px`;
+            messageBox.style.left = `${event.clientX + 10}px`;
+        }
+
+        document.body.addEventListener('mousemove', (event) => {
+            const messageBox = document.getElementById('messageBox');
+            if (messageBox.style.display === 'block') {
+                messageBox.style.top = `${event.clientY + 10}px`;
+                messageBox.style.left = `${event.clientX + 10}px`;
+            }
+        });
+
+        document.body.addEventListener('mouseout', (event) => {
+            if (event.target.classList.contains('bulle')) {
+                const messageBox = document.getElementById('messageBox');
+                messageBox.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
