@@ -1,26 +1,176 @@
-<!-- CommandesEnCours.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Réparations en Attentes</title>
-    <link rel="stylesheet" href="rekonektSuivi.css">
-    <script src="rekonektSuivi.js" defer></script>
+    <title>Réparations en Cours</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('fondEcran.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .global {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ticket {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket span {
+            flex: 1;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .menu {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-links li {
+            display: inline;
+        }
+
+        .menu-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .menu-links a:hover {
+            background-color: #575757;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        #searchInput {
+            width: 200px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-icon {
+            margin-left: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .grid-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            margin: 0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .column-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .diagnostic { background-color: #8e44ad; }
+        .en-attente { background-color: #e67e22; }
+        .proposition { background-color: #f1c40f; }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            width: 100%;
+            font-weight: bold;
+            background-color: #fff;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .message-box {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body class="global">
-    <header>
-    </header>
+    <header></header>
     <nav class="menu">
         <div class="navbar-logo">
-            <a href="#"><img src="logo.png" alt="Logo"></a>
+            <a href="rekonektSuivi.html"><img src="logo.png" alt="Logo" style="height: 40px;"></a>
         </div>
         <ul class="menu-links">
-            <li><a href="nouveauClient.html">Nouveau client</a></li>
-            <li><a href="reparationsEnCours.html">Réparations en Cours </a></li>
-             <li><a href="reparationsEnAttentes.html">Réparations en Attentes </a></li>
-             <li><a href="reparationsTerminees.html">Réparations Terminées </a></li>
-            <li><a href="rechercheClient.html">Clients </a></li>
+            <li><a href="nouveauClient.html">Nouvelle prise en charge</a></li> 
+            <li><a href="reparationsEnCours.html">Réparations en Cours</a></li>
+            <li><a href="reparationsEnAttentes.html">Réparations en Attentes</a></li>
+            <li><a href="reparationsTerminees.html">Réparations Terminées</a></li>
+            <li><a href="rechercheClient.html">Clients</a></li>
         </ul>
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
@@ -28,79 +178,120 @@
     </nav>
     <p><br></p>
 
-        
     <div class="grid-container">
-        <div class="ticket">
-            <div class="compartment">
-                <label class="lab" for="nom-prenom">Nom Prénom:</label>
-                <span class="spa" id="nom-prenom">Jean Dupont</span>
+        <div class="column">
+            <div class="column-header diagnostic">DIAGNOSTIQUE</div>
+            <div class="ticket-header">
+                <span>Nom</span>
+                <span>Appareil</span>
+                <span>N°Suivi</span>
+                <span>Réparation</span>
             </div>
-            <div class="compartment">
-                <label class="lab" for="n-tel">N Tel:</label>
-                <span class="spa" id="n-tel">0123456789</span>
-            </div>            <div class="compartment">
-                <label class="lab" for="numero-commande">Numéro Commande:</label>
-                <span class="spa" id="numero-commande" > <a href="ticketClient.html">1246358123</a></span>
+            <div id="diagnosticTickets">
+                <!-- Les tickets seront insérés ici -->
             </div>
-            <div class="compartment">
-                <label class="lab" for="id-client">ID CLIENT:</label>
-                <span class="spa" id="id-client">12345</span>
+        </div>
+        <div class="column">
+            <div class="column-header en-attente">EN ATTENTE DE PIECES</div>
+            <div class="ticket-header">
+                <span>Nom</span>
+                <span>Appareil</span>
+                <span>N°Suivi</span>
+                <span>Réparation</span>
             </div>
-            <div class="compartment">
-                <label class="lab" for="date">Date Dépôt:</label>
-                <input type="date" name="myInput" value="2024-05-20">
+            <div id="enAttenteTickets">
+                <!-- Les tickets seront insérés ici -->
             </div>
-            <div class="compartment">
-                <label class="lab" for="imei">IMEI:</label>
-                <span class="spa" id="imei">123456789012345</span>
+        </div>
+        <div class="column">
+            <div class="column-header proposition">PROPOSITION DIAG</div>
+            <div class="ticket-header">
+                <span>Nom</span>
+                <span>Appareil</span>
+                <span>N°Suivi</span>
+                <span>Réparation</span>
             </div>
-            <div class="compartment">
-                <label class="lab" for="reparations">REPARATIONS:</label>
-                <span class="spa" id="reparations">Remplacement écran</span>
-            </div>
-            <div class="compartment">
-                <label class="lab" for="reparations">RESULTAT:</label>
-            </div>
-            <div class="grid">
-                <div class="voyant">
-                    <div class="compartmentvoyant">
-                        <div class="bulleterm violet" onclick="selectBulle('violet')" onmouseover="showMessage('')"></div>
-                    </div>
-                    <div class="compartment">
-                        <div class="bulleterm orange" onclick="selectBulle('orange')" onmouseover="showMessage('')"></div>
-                    </div>
-                    <div class="compartment">
-                        <div class="bulleterm jaune" onclick="selectBulle('jaune')" onmouseover="showMessage('')"></div>
-                    </div>
-                </div>
-            </div>
+            <div id="propositionTickets">
+                <!-- Les tickets seront insérés ici -->
             </div>
         </div>
     </div>
+    <footer>
+        <p>&copy; 2024 Re-KonektSuivi</p>
+    </footer>
+    <div id="messageBox" class="message-box"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const formData = JSON.parse(localStorage.getItem('formData'));
+            if (formData) {
+                document.getElementById('nom-prenom').textContent = `${formData['leNom']} ${formData['lePrenom']}`;
+                document.getElementById('n-tel').textContent = formData['numTel'];
+                document.getElementById('numero-commande').textContent = formData['num_suivi'];
+                document.getElementById('id-client').textContent = formData['idInscription'];
+                document.getElementById('date-depot').value = new Date().toISOString().split('T')[0];
+                document.getElementById('imei').textContent = formData['idAppareil'];
+                document.getElementById('reparations').textContent = formData['Proposition'];
+            }
+        });
+
+        function showMessage(message) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = message;
+            messageBox.style.display = 'block';
+            messageBox.style.top = `${event.clientY + 10}px`;
+            messageBox.style.left = `${event.clientX + 10}px`;
+        }
+
+        document.body.addEventListener('mousemove', (event) => {
+            const messageBox = document.getElementById('messageBox');
+            if (messageBox.style.display === 'block') {
+                messageBox.style.top = `${event.clientY + 10}px`;
+                messageBox.style.left = `${event.clientX + 10}px`;
+            }
+        });
+
+        document.body.addEventListener('mouseout', (event) => {
+            if (event.target.classList.contains('bulleterm')) {
+                const messageBox = document.getElementById('messageBox');
+                messageBox.style.display = 'none';
+            }
+        });
+
+        function addTicket(columnId, ticketData) {
+            const ticketContainer = document.getElementById(columnId);
+            const ticket = document.createElement('div');
+            ticket.classList.add('ticket');
+            ticket.innerHTML = `
+                <span>${ticketData.nomPrenom}</span>
+                <span>${ticketData.appareil}</span>
+                <span><a href="ticketClient.html">${ticketData.numeroCommande}</a></span>
+                <span>${ticketData.reparations}</span>
+            `;
+            ticketContainer.appendChild(ticket);
+        }
+
+        // Exemple d'ajout de tickets
+        addTicket('diagnosticTickets', {
+            nomPrenom: 'Jean Dupont',
+            appareil: 'iPhone X',
+            numeroCommande: '1246358123',
+            reparations: 'Remplacement écran'
+        });
+
+        addTicket('enAttenteTickets', {
+            nomPrenom: 'Marie Curie',
+            appareil: 'Samsung S10',
+            numeroCommande: '9876543210',
+            reparations: 'Changement batterie'
+        });
+
+        addTicket('propositionTickets', {
+            nomPrenom: 'Albert Einstein',
+            appareil: 'Google Pixel 4',
+            numeroCommande: '1122334455',
+            reparations: 'Réparation caméra'
+        });
+    </script>
 </body>
-<script>
-    // App.js
-
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-const port = 3000;
-
-app.use(bodyParser.json());
-
-// Endpoint pour ajouter un client
-app.post('/addClient', (req, res) => {
-    const formData = req.body; // Les données du formulaire
-
-    // Traitement des données et stockage dans la base de données
-
-    // Vous pouvez renvoyer une réponse avec l'ID du client ajouté
-    res.json({ id: 'ID_DU_CLIENT' });
-});
-
-app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
-});
-
-</script>
 </html>
+

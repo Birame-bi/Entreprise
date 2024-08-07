@@ -7,16 +7,83 @@
     <title>Réparations Terminées</title>
     <link rel="stylesheet" href="rekonektSuivi.css">
     <script src="rekonektSuivi.js" defer></script>
+
+
+<style>
+    body {
+    font-family: 'Arial', sans-serif; /* Police uniforme */
+    background-color: #f4f4f4; /* Couleur de fond légère */
+    margin: 0;
+    padding: 0;
+}
+
+.global {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 20px;
+    width: 80%; /* Ajustez la largeur selon vos besoins */
+}
+
+.compartment {
+    margin-bottom: 10px;
+}
+
+.lab {
+    font-weight: bold; /* Mettre en gras les étiquettes */
+    display: block; /* Les étiquettes prennent toute la largeur */
+}
+
+.spa {
+    display: block; /* Données affichées sur une nouvelle ligne */
+    margin-bottom: 5px;
+}
+
+input[type="date"]{
+    border: 1px 
+    border-radiu
+    padding: 5px
+}
+
+.menu {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+.menu-links li {
+    display: inline;
+    margin-right: 10px;
+    }
+
+.menu-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.search-containe{
+    display: inline;
+}
+</style>
+
 </head>
 <body class="global">
     <header>
-    </header>
     <nav class="menu">
         <div class="navbar-logo">
-            <a href="#"><img src="logo.png" alt="Logo"></a>
+            <a href="rekonektSuivi.html"><img src="logo.png" alt="Logo"></a>
         </div>
         <ul class="menu-links">
-            <li><a href="nouveauClient.html">Nouveau client</a></li>
+            <li><a href="nouveauClient.html">Nouvelle Prise en Charge</a></li>     
             <li><a href="reparationsEnCours.html">Réparations en Cours </a></li>
              <li><a href="reparationsEnAttentes.html">Réparations en Attentes </a></li>
              <li><a href="reparationsTerminees.html">Réparations Terminées </a></li>
@@ -27,7 +94,8 @@
         </div>
     </nav>
     <p><br></p>
-        
+</header>
+
     <div class="grid-container">
         <div class="ticket">
             <div class="compartment">

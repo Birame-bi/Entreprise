@@ -75,7 +75,7 @@ header {
 .container {
   padding-top: 70px; /* To prevent content from being hidden under the fixed menu */
   background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
-  padding: 20px;
+  padding: 57px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 4% auto;
@@ -98,7 +98,7 @@ form {
 
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 1px;
   background-color: #20232a;
   color: white;
   position: fixed;
