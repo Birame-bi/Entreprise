@@ -98,11 +98,15 @@ header {
 }
 
 .ticket {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
+        background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        padding: 6px;
+        margin: 8px;
+        width: 80%;
+        max-width: 600px; /* Limite la largeur maximale */
+        margin-top: 132px;
+    }
 
 .compartment {
     margin-bottom: 10px;
@@ -192,7 +196,7 @@ footer {
             </div>
         </div>
     </header>
-    <main class="container">
+  
         <div class="grid-container">
             <!-- Ticket example -->
             <div class="ticket">
@@ -237,7 +241,7 @@ footer {
             </div>
             <!-- Add more tickets as needed -->
         </div>
-    </main>
+
     <footer>
         <p>&copy; 2024 Re-KonektSuivi</p>
     </footer>
@@ -248,18 +252,25 @@ footer {
 <!--/*****************************JAVASCRIPT*****************************************************************/-->
 
     <script>
-      document.addEventListener('DOMContentLoaded', (event) => {
-    const formData = JSON.parse(localStorage.getItem('formData'));
-    if (formData) {
-        document.getElementById('nom-prenom').textContent = `${formData['leNom']} ${formData['lePrenom']}`;
-        document.getElementById('n-tel').textContent = formData['numTel'];
-        document.getElementById('num_suivi').textContent = formData['num_suivi'];
-        document.getElementById('id-client').textContent = formData['idInscription'];
-        document.getElementById('date-depot').value = new Date().toISOString().split('T')[0];
-        document.getElementById('imei').textContent = formData['idAppareil'];
-        document.getElementById('reparations').textContent = formData['Proposition'];
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Supposons que vous passiez le numéro de suivi comme paramètre dans l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const numSuivi = urlParams.get('num_suivi');  // Récupère le numéro de suivi depuis l'URL
+
+    if (numSuivi) {
+        const formData = JSON.parse(localStorage.getItem(numSuivi));
+        if (formData) {
+            document.getElementById('nom-prenom').textContent = `${formData['leNom']} ${formData['lePrenom']}`;
+            document.getElementById('n-tel').textContent = formData['numTel'];
+            document.getElementById('num_suivi').textContent = formData['num_suivi'];
+            document.getElementById('id-client').textContent = formData['idInscription'];
+            document.getElementById('date-depot').value = new Date().toISOString().split('T')[0];
+            document.getElementById('imei').textContent = formData['idAppareil'];
+            document.getElementById('reparations').textContent = formData['Proposition'];
+        }
     }
 });
+
 
 function showMessage(event) {
     const message = event.target.getAttribute('data-message');

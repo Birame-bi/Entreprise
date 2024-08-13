@@ -1,12 +1,14 @@
 const express = require('express');
-const mysql = require('mysql2');
-const bodyParser = require('body-parser');
-const path = require('path');
+/*const mysql = require('mysql2');
+const bodyParser = require('body-parser');*/
 const app = express();
+
+const cors = require('cors');
+app.use(cors());
 
 // Middleware pour parser les requêtes JSON
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));  // Sert les fichiers statiques dans le dossier 'public'
 
 // Configuration de la connexion à la base de données MySQL
 const db = mysql.createConnection({
@@ -25,9 +27,6 @@ db.connect(err => {
     console.log('MySQL Connected...');
 });
 
-// Middleware pour servir les fichiers statiques
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Endpoint pour ajouter un client
 app.post('/addClient', (req, res) => {
     console.log('Requête reçue:', req.body); // Log pour vérifier les données de la requête
@@ -44,6 +43,6 @@ app.post('/addClient', (req, res) => {
 });
 
 // Démarrer le serveur
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
+app.listen(8081, () => {
+    console.log('Server started on port 8081');
 });

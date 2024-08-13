@@ -8,203 +8,251 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="rekonektSuivi.js" defer></script>
+
+    <style>
+        /* Votre style CSS ici, inchangé */
+        .container-nouveau-client {
+            background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 4% auto;
+            width: 90%;
+            display: flex;
+            justify-content: space-between; /* Espace entre les sections */
+            gap: 20px; /* Espace entre les sections */
+        }
+        
+        .form-nouveau-client {
+            flex: 1; /* Les formulaires prendront une largeur égale */
+            min-width: 45%; /* Minimum de largeur pour éviter le chevauchement */
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box; /* Inclut le padding et la bordure dans la taille totale */
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        input[type="password"],
+        input[type="numTel"],
+        input[type="number"] {
+            width: calc(100% - 30%); /* Ajuste la largeur des champs pour remplir l'espace disponible */
+            padding: 0.5rem; /* Réduire le padding pour les champs */
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem; /* Réduire la taille de la police pour les champs */
+            color: #0a0202;
+            transition: 0.5s;
+            box-sizing: border-box; /* Inclut le padding et la bordure dans la taille totale */
+        }
+        
+        textarea.com {
+            height: 120px;
+        }
+        
+        input[type="submit"] {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+        .inf {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .inf label {
+            width: 30%; /* Largeur du label */
+            margin-right: 10px; /* Espace entre le label et le champ */
+            text-align: right; /* Alignement du texte à droite */
+            font-size: 1rem;
+        }
+        
+        .cb {
+            width: auto;
+        }
+        
+        .check, .option {
+            margin-top: 1%;
+            display: flex;
+            align-items: center;
+        }
+        
+        input[type="number"] {
+            text-align: right;
+            padding-right: 10px;
+            width: calc(100% - 30%); /* Ajuste la largeur à 100% moins la largeur des labels */
+            box-sizing: border-box; /* Inclut le padding et la bordure dans la taille totale */
+        }
+        
+        .but {
+            width: 10%; /* Ajuste la largeur à 100% */
+            background-color: #046fe9;
+            margin-top: 3%;
+            padding: 10px;
+            font-size: 1.2rem;
+            font-family: 'Bookman, URW Bookman L, serif';
+            cursor: pointer;
+        }
+        
+        .button {
+            width: auto;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            cursor: pointer;
+        }
+        
+        .st {
+            font-size: 1.5em;
+            margin-bottom: 1rem;
+            text-align: center; /* Centrer le titre */
+        }
+        
+        #dm {
+            position: absolute;
+            bottom: 3%;
+        }
+        
+        /* Effet de fondu */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Pour les navigateurs basés sur WebKit (Chrome, Safari, etc.) */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(32, 35, 42, 0.8);
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar-logo img {
+    height: 55px;
+}
+
+.menu-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.menu-links li {
+    position: relative;
+}
+
+.menu-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.menu-links li a:hover {
+    background-color: #282c34;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#searchInput {
+    width: 200px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+        
+        form {
+          flex: 1; /* Les formulaires prendront une largeur égale */
+          max-width: 93%; /* Limite la largeur des formulaires pour éviter qu'ils ne se chevauchent */
+          background-color: #fff;
+          border: 10px solid #ccc;
+          border-radius: 5px;
+          padding: 87px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Style spécifique pour les champs select */
+        #letype,
+        #lamarque,
+        #lemodele,
+        #letat {
+            width: 150px; /* Ajuster cette valeur pour réduire la longueur */
+            padding: 0.25rem; /* Réduire le padding pour les champs select */
+            font-size: 0.85rem; /* Réduire la taille de la police pour les champs select */
+            margin-bottom: 1rem; /* Ajouter un espacement en bas */
+            border: 1px solid #ddd; /* Bordure fine */
+            border-radius: 5px; /* Bordure arrondie */
+        }
+        
+        </style>
 </head>
 
 <body>
     <header>
-<style>
-/* Page spécifique: nouveauClient.css */
-
-.container-nouveau-client {
-    background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 4% auto;
-    width: 90%;
-    display: flex;
-    justify-content: space-between; /* Espace entre les sections */
-    gap: 20px; /* Espace entre les sections */
-}
-
-.form-nouveau-client {
-    flex: 1; /* Les formulaires prendront une largeur égale */
-    min-width: 45%; /* Minimum de largeur pour éviter le chevauchement */
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Inclut le padding et la bordure dans la taille totale */
-}
-
-input[type="text"],
-input[type="email"],
-textarea,
-input[type="password"],
-input[type="numTel"],
-input[type="number"] {
-    width: calc(100% - 30%); /* Ajuste la largeur des champs pour remplir l'espace disponible */
-    padding: 0.5rem; /* Réduire le padding pour les champs */
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 0.9rem; /* Réduire la taille de la police pour les champs */
-    color: #0a0202;
-    transition: 0.5s;
-    box-sizing: border-box; /* Inclut le padding et la bordure dans la taille totale */
-}
-
-textarea.com {
-    height: 120px;
-}
-
-input[type="submit"] {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-.inf {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.inf label {
-    width: 30%; /* Largeur du label */
-    margin-right: 10px; /* Espace entre le label et le champ */
-    text-align: right; /* Alignement du texte à droite */
-    font-size: 1rem;
-}
-
-.cb {
-    width: auto;
-}
-
-.check, .option {
-    margin-top: 1%;
-    display: flex;
-    align-items: center;
-}
-
-input[type="number"] {
-    text-align: right;
-    padding-right: 10px;
-    width: calc(100% - 30%); /* Ajuste la largeur à 100% moins la largeur des labels */
-    box-sizing: border-box; /* Inclut le padding et la bordure dans la taille totale */
-}
-
-.but {
-    width: 10%; /* Ajuste la largeur à 100% */
-    background-color: #046fe9;
-    margin-top: 3%;
-    padding: 10px;
-    font-size: 1.2rem;
-    font-family: 'Bookman, URW Bookman L, serif';
-    cursor: pointer;
-}
-
-.button {
-    width: auto;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    cursor: pointer;
-}
-
-.st {
-    font-size: 1.5em;
-    margin-bottom: 1rem;
-    text-align: center; /* Centrer le titre */
-}
-
-#dm {
-    position: absolute;
-    bottom: 3%;
-}
-
-/* Effet de fondu */
-.fade-in {
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Pour les navigateurs basés sur WebKit (Chrome, Safari, etc.) */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.search-icon {
-  position: absolute;
-  right: 10px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-form {
-  flex: 1; /* Les formulaires prendront une largeur égale */
-  max-width: 93%; /* Limite la largeur des formulaires pour éviter qu'ils ne se chevauchent */
-  background-color: #fff;
-  border: 10px solid #ccc;
-  border-radius: 5px;
-  padding: 87px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Style spécifique pour les champs select */
-#letype,
-#lamarque,
-#lemodele,
-#letat {
-    width: 150px; /* Ajuster cette valeur pour réduire la longueur */
-    padding: 0.25rem; /* Réduire le padding pour les champs select */
-    font-size: 0.85rem; /* Réduire la taille de la police pour les champs select */
-    margin-bottom: 1rem; /* Ajouter un espacement en bas */
-    border: 1px solid #ddd; /* Bordure fine */
-    border-radius: 5px; /* Bordure arrondie */
-}
-
-
-</style>
+        <nav class="menu">
+            <div class="navbar-logo">
+                <a href="rekonektSuivi.html"><img src="logo.png" alt="Logo"></a>
+            </div>
+            <ul class="menu-links">
+                <li><a href="nouveauClient.html">Nouvelle prise en charge</a></li> 
+                <li><a href="reparationsEnCours.html">Réparations en Cours</a></li>
+                <li><a href="reparationsEnAttentes.html">Réparations en Attentes</a></li>
+                <li><a href="reparationsTerminees.html">Réparations Terminées</a></li>
+                <li><a href="rechercheClient.html">Clients</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
+            </div>
+        </nav>
     </header>
-    <nav class="menu">
-        <div class="navbar-logo">
-            <a href="rekonektSuivi.html"><img src="logo.png" alt="Logo"></a>
-        </div>
-        <ul class="menu-links">
-            <li><a href="nouveauClient.html">Nouvelle Prise en charge</a></li>
-            <li><a href="reparationsEnCours.html">Réparations en Cours </a></li>
-             <li><a href="reparationsEnAttentes.html">Réparations en Attentes </a></li>
-             <li><a href="reparationsTerminees.html">Réparations Terminées </a></li>
-            <li><a href="rechercheClient.html">Clients </a></li>
-        </ul>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
-        </div>
-    </nav>
     <p><br></p>
 
     <div class="container">
@@ -213,8 +261,9 @@ form {
             <form id="formulaire">
                 <div class="inf">
                     <label for="num_suivi">Numéro de Suivi</label>
-                    <input type="number" id="num_suivi" name="num_suivi" readonly/>
+                    <input type="text" id="num_suivi" name="num_suivi" readonly />
                 </div>
+                
                 <div class="inf">
                     <label for="letype">Type</label>
                     <select id="letype" name="letype">
@@ -244,12 +293,7 @@ form {
                 </div>
                 <div class="inf">
                     <label for="letat">État</label>
-                    <select id="letat" name="letat">
-                        <option value=""></option>
-                        <option value="grade_a">Grade A</option>
-                        <option value="grade_b">Grade B</option>
-                        <option value="grade_c">Grade C</option>
-                    </select>
+                    <input type="text" id="idEtat" name="idEtat"/>
                 </div>
                 <div class="inf">
                     <label for="idAppareil">N° SERIE / IMEI : </label>
@@ -311,8 +355,8 @@ form {
                     </div>
                     <div class="inf">
                         <label for="idInscription">Identifiant Client</label>
-                        <input type="text" id="idInscription" name="idInscription"/>
-                    </div>
+                        <input type="text" id="idInscription" name="idInscription" readonly />
+                    </div>                    
                     <div class="inf">
                         <label for="numTel">Numéro de Téléphone</label>
                         <input type="text" id="numTel" name="numTel"/>
@@ -340,38 +384,89 @@ form {
     
     <script>
         $(document).ready(function () {
+            function genererNumeroSuivi() {
+                const date = new Date();
+                const timestamp = date.getTime();
+                const random = Math.floor(Math.random() * 10000);
+                return timestamp.toString() + random.toString();
+            }
+        
+            function genererIdentifiantClient(nom, prenom) {
+                const random = Math.floor(Math.random() * 1000);
+                return prenom.substring(0, 3).toUpperCase() + nom.substring(0, 3).toUpperCase() + random;
+            }
+        
+            $('#num_suivi').val(genererNumeroSuivi());
+        
+            $('#leNom, #lePrenom').on('input', function () {
+                const nom = $('#leNom').val();
+                const prenom = $('#lePrenom').val();
+        
+                if (nom && prenom) {
+                    $('#idInscription').val(genererIdentifiantClient(nom, prenom));
+                }
+            });
+        
             $('#validerBtn').click(function (e) {
                 e.preventDefault();
-                const appareilForm = $('#appareilForm').serializeArray();
+        
+                const appareilForm = $('#formulaire').serializeArray();
                 const clientForm = $('#clientForm').serializeArray();
                 const formData = {};
-
+        
                 $.each(appareilForm, function (i, field) {
                     formData[field.name] = field.value;
                 });
-
+        
                 $.each(clientForm, function (i, field) {
                     formData[field.name] = field.value;
                 });
-
-                console.log('Sending data:', formData); // Log to check the form data
-
-                // Envoie les données au serveur
+        
+                console.log('Sending data:', formData);
+        
+                // Envoyer les données au serveur
                 $.ajax({
-                    type: "POST",
-                    url: "/addClient",
-                    data: formData,
-                    success: function(response) {
+                    url: 'http://localhost:8081/addClient',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                        console.log('Client ajouté avec l\'ID:', response.id);
+        
+                        // Stocker les données dans le localStorage
+                        localStorage.setItem(formData.num_suivi, JSON.stringify(formData));
+        
                         // Rediriger vers la page des réparations en cours
-                        window.location.href = 'reparationsEnCours.html';
+                        window.location.href = 'reparationsEnCours.html?num_suivi=' + formData.num_suivi;
                     },
-                    error: function(err) {
-                        console.error('Erreur lors de l\'ajout du client:', err); // Log error
-                        alert('Erreur lors de l\'ajout du client: ' + err.responseText);
+                    error: function (xhr, status, error) {
+                        console.error('Erreur lors de l\'envoi des données:', error);
+                        alert('Une erreur est survenue lors de l\'envoi des données.');
                     }
                 });
             });
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const numSuivi = urlParams.get('num_suivi');
+
+    if (numSuivi) {
+        const formData = JSON.parse(localStorage.getItem(numSuivi));
+        if (formData) {
+            document.getElementById('nom-prenom').textContent = `${formData['leNom']} ${formData['lePrenom']}`;
+            document.getElementById('n-tel').textContent = formData['numTel'];
+            document.getElementById('num_suivi').textContent = formData['num_suivi'];
+            document.getElementById('id-client').textContent = formData['idInscription'];
+            document.getElementById('imei').textContent = formData['idAppareil'];
+            document.getElementById('reparations').textContent = formData['Proposition'];
+        } else {
+            alert('Aucune donnée trouvée pour ce numéro de suivi.');
+            window.location.href = 'nouveauClient.html';
+        }
+    }
+});
+
     </script>
 </body>
 </html>
