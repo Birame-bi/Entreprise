@@ -17,10 +17,10 @@
         </div>
         <ul class="menu-links">
             <li><a href="nouveauClient.html">Nouvelle prise en charge</a></li>        
-            <li><a href="reparationsEnCours.html">Réparations en Cours </a></li>
-             <li><a href="reparationsEnAttentes.html">Réparations en Attentes </a></li>
-             <li><a href="reparationsTerminees.html">Réparations Terminées </a></li>
-            <li><a href="rechercheClient.html">Clients </a></li>
+            <li><a href="reparationsEnCours.html">Réparations en Cours</a></li>
+            <li><a href="reparationsEnAttentes.html">Réparations en Attentes</a></li>
+            <li><a href="reparationsTerminees.html">Réparations Terminées</a></li>
+            <li><a href="rechercheClient.html">Clients</a></li>
         </ul>
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
@@ -30,18 +30,18 @@
 
     <div class="container">
         <form>
-        <h2>Réparation Annuelle</h2>
-        <canvas id="barChart" width="400" height="400"></canvas>
+            <h2>Réparation Annuelle</h2>
+            <canvas id="barChart"></canvas>
         </form>
 
         <form>
-        <h2>Réparation Mensuelle</h2>
-        <canvas id="lineChart" width="400" height="400"></canvas>
+            <h2>Réparation Mensuelle</h2>
+            <canvas id="lineChart"></canvas>
         </form>
         
         <form>
-        <h2>Réparation Semestrielle</h2>
-        <canvas id="polarAreaChart" width="400" height="400"></canvas>
+            <h2>Réparation Semestrielle</h2>
+            <canvas id="polarAreaChart"></canvas>
         </form>
     </div>
 
@@ -50,53 +50,26 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            console.log('Document loaded');
-            
+        document.addEventListener('DOMContentLoaded', () => {
             // Graphique en barres
-            var barCtx = document.getElementById('barChart').getContext('2d');
-            var barChart = new Chart(barCtx, {
+            const barCtx = document.getElementById('barChart').getContext('2d');
+            const barChart = new Chart(barCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                    labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
                     datasets: [{
                         label: '# of Votes',
                         data: [12, 19, 3, 5, 2, 3, 7, 10, 15, 8, 6, 4],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.8)',
-                            'rgba(54, 162, 235, 0.8)',
-                            'rgba(255, 206, 86, 0.8)',
-                            'rgba(75, 192, 192, 0.8)',
-                            'rgba(153, 102, 255, 0.8)',
-                            'rgba(255, 159, 64, 0.8)',
-                            'rgba(99, 255, 132, 0.8)',
-                            'rgba(162, 54, 235, 0.8)',
-                            'rgba(206, 255, 86, 0.8)',
-                            'rgba(192, 75, 192, 0.8)',
-                            'rgba(102, 153, 255, 0.8)',
-                            'rgba(159, 255, 64, 0.8)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1.0)',
-                            'rgba(54, 162, 235, 1.0)',
-                            'rgba(255, 206, 86, 1.0)',
-                            'rgba(75, 192, 192, 1.0)',
-                            'rgba(153, 102, 255, 1.0)',
-                            'rgba(255, 159, 64, 1.0)',
-                            'rgba(99, 255, 132, 1.0)',
-                            'rgba(162, 54, 235, 1.0)',
-                            'rgba(206, 255, 86, 1.0)',
-                            'rgba(192, 75, 192, 1.0)',
-                            'rgba(102, 153, 255, 1.0)',
-                            'rgba(159, 255, 64, 1.0)'
-                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                        borderColor: 'rgba(54, 162, 235, 1.0)',
                         borderWidth: 1
                     }]
                 },
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            stepSize: 2 // Intervalle de 2 unités
                         }
                     }
                 }
@@ -105,16 +78,16 @@
             console.log('Bar chart created');
 
             // Graphique linéaire
-            var lineCtx = document.getElementById('lineChart').getContext('2d');
-            var lineChart = new Chart(lineCtx, {
+            const lineCtx = document.getElementById('lineChart').getContext('2d');
+            const lineChart = new Chart(lineCtx, {
                 type: 'line',
                 data: {
-                    labels: Array.from({ length: 31 }, (v, k) => k + 1), // Jours du mois
+                    labels: Array.from({ length: 31 }, (_, i) => i + 1), // Jours du mois
                     datasets: [{
                         label: 'Daily Traffic',
                         data: [10, 12, 8, 15, 9, 12, 11, 14, 13, 15, 12, 11, 10, 14, 13, 15, 12, 11, 10, 14, 13, 15, 12, 11, 10, 14, 13, 15, 12, 11, 10],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1.0)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1.0)',
                         borderWidth: 1,
                         fill: true // Remplissage sous la ligne
                     }]
@@ -122,7 +95,12 @@
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true // L'axe Y commence à 0
+                            beginAtZero: true, // L'axe Y commence à 0
+                            stepSize: 2, // Incréments de 2 sur l'axe Y
+                            max: 20,
+                            ticks: {
+                    stepSize: 2
+                }
                         }
                     }
                 }
@@ -131,8 +109,8 @@
             console.log('Line chart created');
 
             // Diagramme polaire
-            var polarCtx = document.getElementById('polarAreaChart').getContext('2d');
-            var polarAreaChart = new Chart(polarCtx, {
+            const polarCtx = document.getElementById('polarAreaChart').getContext('2d');
+            const polarAreaChart = new Chart(polarCtx, {
                 type: 'polarArea',
                 data: {
                     labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],

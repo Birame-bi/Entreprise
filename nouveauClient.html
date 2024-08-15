@@ -154,13 +154,17 @@
         }
         
         .menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(32, 35, 42, 0.8);
-    padding: 10px 20px;
-    color: white;
-}
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(32, 35, 42, 0.8);
+            padding: 10px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 98%;
+            z-index: 1000;
+        }
 
 .navbar-logo img {
     height: 55px;
@@ -194,12 +198,13 @@
 }
 
 #searchInput {
-    width: 200px;
+    width: 215px;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
     outline: none;
     font-size: 16px;
+    margin-top: 15px;
 }
 
 .search-icon {
@@ -224,12 +229,12 @@
         #lamarque,
         #lemodele,
         #letat {
-            width: 150px; /* Ajuster cette valeur pour réduire la longueur */
-            padding: 0.25rem; /* Réduire le padding pour les champs select */
-            font-size: 0.85rem; /* Réduire la taille de la police pour les champs select */
-            margin-bottom: 1rem; /* Ajouter un espacement en bas */
-            border: 1px solid #ddd; /* Bordure fine */
-            border-radius: 5px; /* Bordure arrondie */
+            width: 150px; 
+            padding: 0.25rem; 
+            font-size: 0.85rem; 
+            margin-bottom: 1rem; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
         }
         
         </style>
