@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche client</title>
+    <link rel="stylesheet" href="../design/rechercheClient.css">
+    <script src="../JavaScript/rechercheClient.js" defer></script>
+    
+</head>
+
+<body>
+    <header>
+        <div class="menu">
+            <div class="navbar-logo">
+                <a href="rekonektSuivi.html"><img src="../Image/logo.png" alt="Logo"></a>
+            </div>
+            <ul class="menu-links">
+                <li><a href="nouveauClient.html">Nouvelle Prise en Charge</a></li>
+                <li><a href="reparationsEnCours.html">Réparations en Cours</a></li>
+                <li><a href="reparationsEnAttentes.html">Réparations en Attentes</a></li>
+                <li><a href="reparationsTerminees.html">Réparations Terminées</a></li>
+                <li><a href="rechercheClient.html">Clients</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h2>Recherche client</h2>
+        <form>
+            <input type="text" id="nomIdentifiant" name="nomIdentifiant" placeholder="Nom ou Identifiant" required>
+            <input type="text" id="numTel" name="numTel" placeholder="Numero de Téléphone" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <button type="submit" class="button">Connection</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réparations en Cours</title>
+    <link rel="stylesheet" href="../design/reparationEnAttente.css">
+    <script src="../JavaScript/reparationsEnAttentes.js" defer></script>
+  
+</head>
+<body class="global">
+    <header>
+    <nav class="menu">
+        <div class="navbar-logo">
+            <a href="rekonektSuivi.html"><img src="../Image/logo.png" alt="Logo"></a>
+        </div>
+        <ul class="menu-links">
+            <li><a href="nouveauClient.html">Nouvelle prise en charge</a></li> 
+            <li><a href="reparationsEnCours.html">Réparations en Cours</a></li>
+            <li><a href="reparationsEnAttentes.html">Réparations en Attentes</a></li>
+            <li><a href="reparationsTerminees.html">Réparations Terminées</a></li>
+            <li><a href="rechercheClient.html">Clients</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
+        </div>
+    </nav>
+</header>
+
+    <div class="grid-container">
+        <div class="column">
+            <div class="column-header diagnostic">DIAGNOSTIQUE</div>
+            <div class="ticket-header">
+                <span>Nom</span>
+                <span>Appareil</span>
+                <span>N°Suivi</span>
+                <span>Réparation</span>
+            </div>
+            <div id="diagnosticTickets">
+                <!-- Les tickets seront insérés ici -->
+            </div>
+        </div>
+        <div class="column">
+            <div class="column-header en-attente">EN ATTENTE DE PIECES</div>
+            <div class="ticket-header">
+                <span>Nom</span>
+                <span>Appareil</span>
+                <span>N°Suivi</span>
+                <span>Réparation</span>
+            </div>
+            <div id="enAttenteTickets">
+                <!-- Les tickets seront insérés ici -->
+            </div>
+        </div>
+        <div class="column">
+            <div class="column-header proposition">PROPOSITION DIAG</div>
+            <div class="ticket-header">
+                <span>Nom</span>
+                <span>Appareil</span>
+                <span>N°Suivi</span>
+                <span>Réparation</span>
+            </div>
+            <div id="propositionTickets">
+                <!-- Les tickets seront insérés ici -->
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Re-KonektSuivi</p>
+    </footer>
+    <div id="messageBox" class="message-box"></div>
+    
+</body>
+</html>
+

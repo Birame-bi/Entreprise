@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Espace Client</title>
+    <link rel="stylesheet" href="../design/espaceClient.css">
+    <script src="../JavaScript/espaceClient.js" defer></script>
+  
+</head>
+<body>
+    <div class="header">
+        <div class="navbar-logo">
+            <a href="#"><img src="../Image/logo.png" alt="Logo"></a>
+        </div>
+        <div class="menu">
+            <a href="https://re-konekt.fr/">Espace de Réparation</a>
+            <a href="https://re-konekt.fr/ventes/">Espace de Vente</a>
+            <a href="https://re-konekt.fr/blog/">BLOG</a>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
+        </div>
+        <a href="#">IDENTIFIANT</a>
+    </div>
+    <div class="container">
+        <div class="right-column">
+            <form>  
+                <h2>Information Client</h2>
+                <div class="client-info">
+                    <div class="client-details">
+                        <p><strong>ID CLIENT :</strong> 00001</p>
+                        <p><strong>NOM :</strong> MARTIN</p>
+                        <p><strong>PRENOM :</strong> MARTIN</p>
+                        <p><strong>NUMERO DE TEL :</strong> 06 66 66 66 66</p>
+                        <p><strong>E-MAIL :</strong> martin@gmail.com</p>
+                        <p><strong>Commentaire :</strong></p>
+                        <p class="comment">Disponible au téléphone a partir de 16h</p>
+                        <button class="button">Modifier</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="left-column">
+            <form>
+                <h2>Réparation en cours</h2>
+                <div class="repair-section">
+                    <div class="repair-info">
+                        <span>02/05/2024</span>
+                        <span>N°Suivi : 23656566</span>
+                        <span>Remplacement écran iPhone 12 Pro 79€</span>
+                    
+                    <button class="button">Prise en charge</button>
+                    <input type="text" id="inpt"/>
+                </div>
+                </div>
+                <p><br></p>
+                <div class="history">
+                    <h2>Historique</h2>
+                    <table>
+                        <tr>
+                            <th>N°Suivi</th>
+                            <th>Date</th>
+                            <th>Appareil</th>
+                        </tr>
+                        <tr>
+                            <td><a href="#">23656566</a></td>
+                            <td>02/07/2023</td>
+                            <td>iPhone 14</td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">23656566</a></td>
+                            <td>02/12/2024</td>
+                            <td>Tab S25</td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">23656566</a></td>
+                            <td>02/05/2024</td>
+                            <td>Ordinateur hp</td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

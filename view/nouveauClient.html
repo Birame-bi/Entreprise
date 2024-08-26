@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouveau Client</title>
+    <link rel="stylesheet" href="../design/rekonektSuivi.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="../JavaScript/rekonektSuivi.js" defer></script>
+    <link rel="stylesheet" href="../design/nouveauClient.css">
+    <script src="../JavaScript/nouveauClient.js" defer></script>
+
+</head>
+
+<body>
+    <header>
+        <nav class="menu">
+            <div class="navbar-logo">
+                <a href="rekonektSuivi.html"><img src="../Image/logo.png" alt="Logo"></a>
+            </div>
+            <ul class="menu-links">
+                <li><a href="nouveauClient.html">Nouvelle prise en charge</a></li> 
+                <li><a href="reparationsEnCours.html">Réparations en Cours</a></li>
+                <li><a href="reparationsEnAttentes.html">Réparations en Attentes</a></li>
+                <li><a href="reparationsTerminees.html">Réparations Terminées</a></li>
+                <li><a href="rechercheClient.html">Clients</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
+            </div>
+        </nav>
+    </header>
+    <p><br></p>
+
+    <div class="container">
+        <div class="infosAppareil form-nouveau-client">
+            <h2 class="st">Information Appareil</h2>
+            <form id="formulaire">
+                <div class="inf">
+                    <label for="num_suivi">Numéro de Suivi</label>
+                    <input type="text" id="num_suivi" name="num_suivi" readonly />
+                </div>
+                
+                <div class="inf">
+                    <label for="letype">Type</label>
+                    <select id="letype" name="letype">
+                        <option value="neuf"></option>
+                        <option value="smartphone">Smartphone</option>
+                        <option value="tablet">Tablette</option>
+                        <option value="laptop">Ordinateur</option>
+                        <option value="console">Console</option>
+                    </select>
+                </div>
+                <div class="inf">
+                    <label for="lamarque">Marque</label>
+                    <select id="lamarque" name="lamarque" onchange="checkCustomInput('marque')">
+                        <option value="neuf"></option>
+                        <option value="apple">Apple</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="huawei">Huawei</option>
+                        <option value="other">Autre...</option> <!-- Option pour saisir une marque personnalisée -->
+                    </select>
+                    <!-- Champ pour saisie personnalisée, caché par défaut -->
+                    <input type="text" id="customMarque" name="customMarque" placeholder="Entrez une autre marque" style="display:none;">
+                </div>
+                
+                <div class="inf">
+                    <label for="lemodele">Modèle</label>
+                    <select id="lemodele" name="lemodele" onchange="checkCustomInput('modele')">
+                        <option value=""></option>
+                        <option value="galaxy_s20">Galaxy S20</option>
+                        <option value="iphone_14_pro_max">iPhone 14 Pro Max</option>
+                        <option value="other">Autre...</option> <!-- Option pour saisir un modèle personnalisé -->
+                    </select>
+                    <!-- Champ pour saisie personnalisée, caché par défaut -->
+                    <input type="text" id="customModele" name="customModele" placeholder="Entrez un autre modèle" style="display:none;">
+                </div>
+                <div class="inf">
+                    <label for="letat">État</label>
+                    <input type="text" id="idEtat" name="idEtat"/>
+                </div>
+                <div class="inf">
+                    <label for="idAppareil">N° SERIE / IMEI : </label>
+                    <input type="text" id="idAppareil" name="idAppareil"/>
+                </div>
+                <div class="inf">
+                    <label for="nomUt">Nom d'Utilisateur</label>
+                    <input type="text" id="nomUt" name="nomUt"/>
+                </div>
+                <div class="inf">
+                    <label for="mtp">Mot de Passe</label>
+                    <input type="text" id="mtp" name="mtp"/>
+                </div>
+                <div class="inf">
+                    <label for="consta">Panne Constatée</label>
+                    <input type="text" id="consta" name="consta">
+                </div>
+                <div class="inf">
+                    <label for="Proposition">Réparation Proposée</label>
+                    <input type="text" id="Proposition" name="Proposition">
+                </div>
+                <div class="inf">
+                    <label for="prix">Prix</label>
+                    <input type="number" id="prix" name="prix" step="0.01">
+                    <span>€</span>
+                </div>
+                <div class="inf">
+                    <label for="acompte">Acompte</label>
+                    <input type="number" id="acompte" name="acompte" step="0.01">
+                    <span>€</span>
+                </div>
+                <div id="choix" class="inf">
+                    <div class="check">
+                        <label for="accord">Accord Client</label>
+                        <input type="radio" value="accordOui" id="accordOui" name="accord"/><label class="boxcil" for="accordOui">OUI</label>
+                        <input type="radio" value="accordNon" id="accordNon" name="accord"/><label class="boxcil" for="accordNon">NON</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="infosClient form-nouveau-client">
+            <h2 class="st">Information Client</h2>
+            <form id="clientForm">
+                <div id="formulaire">
+                    <div class="inf">
+                        <label for="lePrenom">ID ou Numéro client</label>
+                        <input type="text" id="lePrenom" name="lePrenom"/>
+                    </div>
+                    <div id="choix" class="inf">
+                        <div class="check">
+                            <label for="civilite">Civilité</label>
+                            <input type="radio" value="genreFem" id="genreFem" name="civilite"/><label class="boxcil" for="genreFem">Mme</label>
+                            <input type="radio" value="genreMas" id="genreMas" name="civilite"/><label class="boxcil" for="genreMas">M.</label>
+                        </div>
+                    </div>
+                    <div class="inf">
+                        <label for="leNom">Nom</label>
+                        <input type="text" id="leNom" name="leNom"/>
+                    </div>
+                    <div class="inf">
+                        <label for="lePrenom">Prénom</label>
+                        <input type="text" id="lePrenom" name="lePrenom"/>
+                    </div>
+                    <div class="inf">
+                        <label for="idInscription">Identifiant Client</label>
+                        <input type="text" id="idInscription" name="idInscription" readonly />
+                    </div>                    
+                    <div class="inf">
+                        <label for="numTel">Numéro de Téléphone</label>
+                        <input type="text" id="numTel" name="numTel"/>
+                    </div>
+                    <div class="inf">
+                        <label for="email">Adresse email</label>
+                        <input type="email" id="email" name="email" placeholder="Adresse@email.com" size="30" required>
+                    </div>
+                    <div class="inf">
+                        <label for="noteClient">Commentaire Client</label>
+                        <input type="text" id="noteClient" name="noteClient" class="com"/>
+                    </div>
+                    <div class="inf">
+                        <label for="noteInterne">Note Interne</label>
+                        <input type="text" id="noteInterne" name="noteInterne" class="com"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="boutonValidation" class="button">
+        <button class="but" id="validerBtn">Envoyer</button>
+    </div>
+    
+</body>
+</html>

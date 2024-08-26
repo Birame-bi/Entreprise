@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-  background: url('fondEcran.jpg') no-repeat center center fixed;
+  background: url('../Image/fondEcran.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: 'Helvetica';
   margin: 0;
@@ -104,4 +104,15 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.imgRep {
+  max-width: 100%; /* L'image ne sera jamais plus large que son conteneur */
+  height: auto;
+  margin-top: 10px;
+}
+
+h2 {
+  text-align: center;
+
 }

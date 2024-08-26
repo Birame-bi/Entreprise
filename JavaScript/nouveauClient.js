@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     function genererNumeroSuivi() {
         const date = new Date();
@@ -61,3 +62,40 @@ $(document).ready(function () {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+const urlParams = new URLSearchParams(window.location.search);
+const numSuivi = urlParams.get('num_suivi');
+
+if (numSuivi) {
+const formData = JSON.parse(localStorage.getItem(numSuivi));
+if (formData) {
+    document.getElementById('nom-prenom').textContent = `${formData['leNom']} ${formData['lePrenom']}`;
+    document.getElementById('n-tel').textContent = formData['numTel'];
+    document.getElementById('num_suivi').textContent = formData['num_suivi'];
+    document.getElementById('id-client').textContent = formData['idInscription'];
+    document.getElementById('imei').textContent = formData['idAppareil'];
+    document.getElementById('reparations').textContent = formData['Proposition'];
+} else {
+    alert('Aucune donnée trouvée pour ce numéro de suivi.');
+    window.location.href = 'nouveauClient.html';
+}
+}
+});
+
+function checkCustomInput(type) {
+    const selectElement = document.getElementById('le' + type);
+    const customInput = document.getElementById('custom' + capitalize(type));
+    
+    // Si l'utilisateur sélectionne "Autre...", afficher le champ texte
+    if (selectElement.value === 'other') {
+        customInput.style.display = 'block';
+    } else {
+        customInput.style.display = 'none';
+        customInput.value = ''; // Réinitialiser la valeur si le champ est caché
+    }
+}
+
+function capitalize(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}

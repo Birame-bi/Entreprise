@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réparations Terminées</title>
+    <link rel="stylesheet" href="../design/rekonektSuivi.css">
+    <script src="../JavaScript/rekonektSuivi.js" defer></script>
+    <link rel="stylesheet" href="../design/reparationsTerminees.css">
+    <script src="../JavaScript/reparationsTerminees.js" defer></script>
+
+
+</head>
+<body class="global">
+    <header>
+    <nav class="menu">
+        <div class="navbar-logo">
+            <a href="rekonektSuivi.html"><img src="../Image/logo.png" alt="Logo"></a>
+        </div>
+        <ul class="menu-links">
+            <li><a href="nouveauClient.html">Nouvelle Prise en Charge</a></li>     
+            <li><a href="reparationsEnCours.html">Réparations en Cours</a></li>
+            <li><a href="reparationsEnAttentes.html">Réparations en Attentes</a></li>
+            <li><a href="reparationsTerminees.html">Réparations Terminées</a></li>
+            <li><a href="rechercheClient.html">Clients</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher un client..."><span class="search-icon">&#128269;</span>
+        </div>
+    </nav>
+    <p><br></p>
+</header>
+
+    <div class="grid-container">
+        <div class="ticket">
+            <div class="compartment">
+                <label class="lab" for="nom-prenom">Nom Prénom:</label>
+                <span class="spa" id="nom-prenom">Jean Dupont</span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="n-tel">N Tel:</label>
+                <span class="spa" id="n-tel">0123456789</span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="numero-commande">Numéro Commande:</label>
+                <span class="spa" id="numero-commande"><a href="ticketClient.html">1246358123</a></span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="id-client">ID CLIENT:</label>
+                <span class="spa" id="id-client">12345</span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="date">Date Dépôt:</label>
+                <input type="date" name="myInput" value="2024-05-20">
+            </div>
+            <div class="compartment">
+                <label class="lab" for="imei">IMEI:</label>
+                <span class="spa" id="imei">123456789012345</span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="reparations">REPARATIONS:</label>
+                <span class="spa" id="reparations">Remplacement écran</span>
+            </div>
+            <div class="compartment">
+                <label class="lab" for="reparations">Prix:</label>
+                <span class="spa" id="reparations">215€</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 Re-KonektSuivi
+    </footer>
+</body>
+</html>
