@@ -1,6 +1,6 @@
-CREATE DATABASE clientdb;
+CREATE DATABASE bddrekonekt;
 
-USE clientdb;
+USE bddrekonnekt;
 
 CREATE TABLE clients (
     id INT AUTO_INCREMENT PRIMARY KEY,
