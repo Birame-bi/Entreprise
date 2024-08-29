@@ -42,17 +42,12 @@ $(document).ready(function () {
 
         // Envoyer les données au serveur
         $.ajax({
-            url: 'http://localhost:3000/addClient',
+            url: 'http://localhost:3000/nouveauClient',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function (response) {
-                console.log('Client ajouté avec l\'ID:', response.id);
-
-                /* Stocker les données dans le localStorage
-                localStorage.setItem(formData.num_suivi, JSON.stringify(formData));*/
-
-                // Rediriger vers la page des réparations en cours
+                console.log('Client ajouté avec l\'ID:', response.id);  // Ici on utilise la variable response
                 window.location.href = 'reparationsEnCours.html?num_suivi=' + formData.num_suivi;
             },
             error: function (xhr, status, error) {
@@ -60,6 +55,7 @@ $(document).ready(function () {
                 alert('Une erreur est survenue lors de l\'envoi des données.');
             }
         });
+        
     });
 });
 

@@ -25,10 +25,10 @@ db.connect((err) => {
 });
 
 // Route pour gérer l'ajout de clients
-app.post('/addClient', (req, res) => {
+app.post('/nouveauClient', (req, res) => {
   const {
     civilite, leNom, lePrenom, idInscription, numTel, email, noteClient, noteInterne,
-    num_suivi, letype, lamarque, lemodele, idEtat, idAppareil, nomUt, mtp, consta, Proposition, prix, acompte, accord
+    num_suivi, letype, lamarque, lemodele, letat, idAppareil, nomUt, mtp, consta, Proposition, prix, acompte, accord
   } = req.body;
 
   const insertClientQuery = `
@@ -44,13 +44,13 @@ app.post('/addClient', (req, res) => {
       return res.status(500).json({ error: 'Erreur lors de l\'insertion des données client' });
     }
 
-    // Insérer les données de l'appareil (vous pouvez ajuster le nom de la table et les colonnes selon votre schéma)
+    // Insérer les données de l'appareil
     const insertDeviceQuery = `
-      INSERT INTO appareils (num_suivi, letype, lamarque, lemodele, idEtat, idAppareil, nomUt, mtp, consta, Proposition, prix, acompte, accord, client_id) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO appareil (num_suivi, letype, lamarque, lemodele, letat, idAppareil, nomUt, mtp, consta, Proposition, prix, acompte, accord) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
-    const deviceValues = [num_suivi, letype, lamarque, lemodele, idEtat, idAppareil, nomUt, mtp, consta, Proposition, prix, acompte, accord, result.insertId];
+    const deviceValues = [num_suivi, letype, lamarque, lemodele, letat, idAppareil, nomUt, mtp, consta, Proposition, prix, acompte, accord, result.insertId];
 
     db.query(insertDeviceQuery, deviceValues, (err, result) => {
       if (err) {
