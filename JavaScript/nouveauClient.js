@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     function genererNumeroSuivi() {
         const date = new Date();
@@ -12,78 +11,93 @@ $(document).ready(function () {
         return prenom.substring(0, 3).toUpperCase() + nom.substring(0, 3).toUpperCase() + random;
     }
 
+    // Générer le numéro de suivi au chargement du document
     $('#num_suivi').val(genererNumeroSuivi());
 
+    // Générer l'identifiant client basé sur le nom et le prénom
     $('#leNom, #lePrenom').on('input', function () {
-        const nom = $('#leNom').val();
-        const prenom = $('#lePrenom').val();
+        const nom = $('#leNom').val().trim();
+        const prenom = $('#lePrenom').val().trim();
 
         if (nom && prenom) {
-            $('#idInscription').val(genererIdentifiantClient(nom, prenom));
+            const idClient = genererIdentifiantClient(nom, prenom);
+            $('#idInscription').val(idClient);
+        } else {
+            $('#idInscription').val('');  // Réinitialiser si l'un des champs est vide
         }
     });
 
-    $('#validerBtn').click(function (e) {
+    // Gérer la soumission du formulaire appareil
+    $('#validerAppareil').click(function (e) {
         e.preventDefault();
 
         const appareilForm = $('#formulaire').serializeArray();
-        const clientForm = $('#clientForm').serializeArray();
         const formData = {};
 
         $.each(appareilForm, function (i, field) {
             formData[field.name] = field.value;
         });
 
+        console.log('Envoi des données appareil:', formData);
+
+        // Envoyer les données de l'appareil au serveur
+        $.ajax({
+            url: 'http://localhost:3000/nouvelAppareil',  // Adaptez l'URL en fonction de votre API
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function (response) {
+                console.log('Appareil ajouté avec succès:', response);
+                alert('Les informations de l\'appareil ont été envoyées avec succès.');
+            },
+            error: function (xhr, status, error) {
+                console.error('Erreur lors de l\'envoi des données appareil:', error);
+                alert('Une erreur est survenue lors de l\'envoi des données de l\'appareil.');
+            }
+        });
+    });
+
+    // Gérer la soumission du formulaire client
+    $('#validerClient').click(function (e) {
+        e.preventDefault();
+
+        const clientForm = $('#clientForm').serializeArray();
+        const formData = {};
+
         $.each(clientForm, function (i, field) {
             formData[field.name] = field.value;
         });
 
-        console.log('Sending data:', formData);
+        // Vérification avant l'envoi
+        if (!formData.leNom || !formData.lePrenom || !formData.numTel || !formData.email) {
+            alert('Veuillez remplir tous les champs obligatoires.');
+            return;
+        }
 
-        // Envoyer les données au serveur
+        console.log('Envoi des données client:', formData);
+
+        // Envoyer les données du client au serveur
         $.ajax({
             url: 'http://localhost:3000/nouveauClient',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function (response) {
-                console.log('Client ajouté avec l\'ID:', response.id);  // Ici on utilise la variable response
-                window.location.href = 'reparationsEnCours.html?num_suivi=' + formData.num_suivi;
+                console.log('Client ajouté avec succès:', response);
+                alert('Les informations du client ont été envoyées avec succès.');
             },
             error: function (xhr, status, error) {
-                console.error('Erreur lors de l\'envoi des données:', error);
-                alert('Une erreur est survenue lors de l\'envoi des données.');
+                console.error('Erreur lors de l\'envoi des données client:', error);
+                alert('Une erreur est survenue lors de l\'envoi des données du client.');
             }
         });
-        
     });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-const urlParams = new URLSearchParams(window.location.search);
-const numSuivi = urlParams.get('num_suivi');
-
-if (numSuivi) {
-const formData = JSON.parse(localStorage.getItem(numSuivi));
-if (formData) {
-    document.getElementById('nom-prenom').textContent = `${formData['leNom']} ${formData['lePrenom']}`;
-    document.getElementById('n-tel').textContent = formData['numTel'];
-    document.getElementById('num_suivi').textContent = formData['num_suivi'];
-    document.getElementById('id-client').textContent = formData['idInscription'];
-    document.getElementById('imei').textContent = formData['idAppareil'];
-    document.getElementById('reparations').textContent = formData['Proposition'];
-} else {
-    alert('Aucune donnée trouvée pour ce numéro de suivi.');
-    window.location.href = 'nouveauClient.html';
-}
-}
 });
 
 function checkCustomInput(type) {
     const selectElement = document.getElementById('le' + type);
     const customInput = document.getElementById('custom' + capitalize(type));
     
-    // Si l'utilisateur sélectionne "Autre...", afficher le champ texte
     if (selectElement.value === 'other') {
         customInput.style.display = 'block';
     } else {
@@ -95,3 +109,5 @@ function checkCustomInput(type) {
 function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
+
+

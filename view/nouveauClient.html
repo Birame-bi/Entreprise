@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="../design/rekonektSuivi.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script src="../JavaScript/rekonektSuivi.js" defer></script>
+    <script src="../JavaScript/rekonektSuivi.js" defer></script>
     <link rel="stylesheet" href="../design/nouveauClient.css">
     <script src="../JavaScript/nouveauClient.js" defer></script>
-
 </head>
 
 <body>
@@ -45,7 +44,7 @@
                 <div class="inf">
                     <label for="letype">Type</label>
                     <select id="letype" name="letype">
-                        <option value="neuf"></option>
+                        <option value=""></option>
                         <option value="smartphone">Smartphone</option>
                         <option value="tablet">Tablette</option>
                         <option value="laptop">Ordinateur</option>
@@ -55,13 +54,12 @@
                 <div class="inf">
                     <label for="lamarque">Marque</label>
                     <select id="lamarque" name="lamarque" onchange="checkCustomInput('marque')">
-                        <option value="neuf"></option>
+                        <option value=""></option>
                         <option value="apple">Apple</option>
                         <option value="samsung">Samsung</option>
                         <option value="huawei">Huawei</option>
-                        <option value="other">Autre...</option> <!-- Option pour saisir une marque personnalisée -->
+                        <option value="other">Autre...</option>
                     </select>
-                    <!-- Champ pour saisie personnalisée, caché par défaut -->
                     <input type="text" id="customMarque" name="customMarque" placeholder="Entrez une autre marque" style="display:none;">
                 </div>
                 
@@ -71,14 +69,13 @@
                         <option value=""></option>
                         <option value="galaxy_s20">Galaxy S20</option>
                         <option value="iphone_14_pro_max">iPhone 14 Pro Max</option>
-                        <option value="other">Autre...</option> <!-- Option pour saisir un modèle personnalisé -->
+                        <option value="other">Autre...</option>
                     </select>
-                    <!-- Champ pour saisie personnalisée, caché par défaut -->
                     <input type="text" id="customModele" name="customModele" placeholder="Entrez un autre modèle" style="display:none;">
                 </div>
                 <div class="inf">
                     <label for="letat">État</label>
-                    <input type="text" id="idEtat" name="idEtat"/>
+                    <input type="text" id="letat" name="letat"/>
                 </div>
                 <div class="inf">
                     <label for="idAppareil">N° SERIE / IMEI : </label>
@@ -113,63 +110,62 @@
                 <div id="choix" class="inf">
                     <div class="check">
                         <label for="accord">Accord Client</label>
-                        <input type="radio" value="accordOui" id="accordOui" name="accord"/><label class="boxcil" for="accordOui">OUI</label>
-                        <input type="radio" value="accordNon" id="accordNon" name="accord"/><label class="boxcil" for="accordNon">NON</label>
+                        <input type="radio" value="oui" id="accordOui" name="accord"/><label class="boxcil" for="accordOui">OUI</label>
+                        <input type="radio" value="non" id="accordNon" name="accord"/><label class="boxcil" for="accordNon">NON</label>
                     </div>
+                </div>
+                <div class="button">
+                    <button class="but" id="validerAppareil">Valider Appareil</button>
                 </div>
             </form>
         </div>
         <div class="infosClient form-nouveau-client">
             <h2 class="st">Information Client</h2>
             <form id="clientForm">
-                <div id="formulaire">
-                    <div class="inf">
-                        <label for="lePrenom">ID ou Numéro client</label>
-                        <input type="text" id="lePrenom" name="lePrenom"/>
+                <div class="inf">
+                    <label for="clientID">ID ou Numéro client</label>
+                    <input type="text" id="clientID" name="clientID"/>
+                </div>
+                <div id="choix" class="inf">
+                    <div class="check">
+                        <label for="civilite">Civilité</label>
+                        <input type="radio" value="Mme" id="genreFem" name="civilite"/><label class="boxcil" for="genreFem">Mme</label>
+                        <input type="radio" value="M." id="genreMas" name="civilite"/><label class="boxcil" for="genreMas">M.</label>
                     </div>
-                    <div id="choix" class="inf">
-                        <div class="check">
-                            <label for="civilite">Civilité</label>
-                            <input type="radio" value="genreFem" id="genreFem" name="civilite"/><label class="boxcil" for="genreFem">Mme</label>
-                            <input type="radio" value="genreMas" id="genreMas" name="civilite"/><label class="boxcil" for="genreMas">M.</label>
-                        </div>
-                    </div>
-                    <div class="inf">
-                        <label for="leNom">Nom</label>
-                        <input type="text" id="leNom" name="leNom"/>
-                    </div>
-                    <div class="inf">
-                        <label for="lePrenom">Prénom</label>
-                        <input type="text" id="lePrenom" name="lePrenom"/>
-                    </div>
-                    <div class="inf">
-                        <label for="idInscription">Identifiant Client</label>
-                        <input type="text" id="idInscription" name="idInscription" readonly />
-                    </div>                    
-                    <div class="inf">
-                        <label for="numTel">Numéro de Téléphone</label>
-                        <input type="text" id="numTel" name="numTel"/>
-                    </div>
-                    <div class="inf">
-                        <label for="email">Adresse email</label>
-                        <input type="email" id="email" name="email" placeholder="Adresse@email.com" size="30" required>
-                    </div>
-                    <div class="inf">
-                        <label for="noteClient">Commentaire Client</label>
-                        <input type="text" id="noteClient" name="noteClient" class="com"/>
-                    </div>
-                    <div class="inf">
-                        <label for="noteInterne">Note Interne</label>
-                        <input type="text" id="noteInterne" name="noteInterne" class="com"/>
-                    </div>
+                </div>
+                <div class="inf">
+                    <label for="leNom">Nom</label>
+                    <input type="text" id="leNom" name="leNom"/>
+                </div>
+                <div class="inf">
+                    <label for="lePrenom">Prénom</label>
+                    <input type="text" id="lePrenom" name="lePrenom"/>
+                </div>
+                <div class="inf">
+                    <label for="idInscription">Identifiant Client</label>
+                    <input type="text" id="idInscription" name="idInscription" readonly />
+                </div>                    
+                <div class="inf">
+                    <label for="numTel">Numéro de Téléphone</label>
+                    <input type="text" id="numTel" name="numTel"/>
+                </div>
+                <div class="inf">
+                    <label for="email">Adresse email</label>
+                    <input type="email" id="email" name="email" placeholder="Adresse@email.com" size="30" required>
+                </div>
+                <div class="inf">
+                    <label for="noteClient">Commentaire Client</label>
+                    <input type="text" id="noteClient" name="noteClient" class="com"/>
+                </div>
+                <div class="inf">
+                    <label for="noteInterne">Note Interne</label>
+                    <input type="text" id="noteInterne" name="noteInterne" class="com"/>
+                </div>
+                <div class="button">
+                    <button class="but" id="validerClient">Valider Client</button>
                 </div>
             </form>
         </div>
     </div>
-    
-    <div class="button">
-        <button class="but" id="validerBtn">Envoyer</button>
-    </div>
-    
 </body>
 </html>

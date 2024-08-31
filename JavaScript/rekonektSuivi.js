@@ -39,6 +39,8 @@ $(document).ready(function () {
 
         console.log('Sending data:', formData);
 
+
+        
         // Envoyer les données au serveur
         $.ajax({
             url: 'http://localhost:8081/addClient',
@@ -62,19 +64,28 @@ $(document).ready(function () {
     });
 });
 
-document.getElementById('validerBtn').addEventListener('click', function() {
-    // Récupérer les valeurs des champs
-    const numSuivi = document.getElementById('num_suivi').value;
-    const nom = document.getElementById('leNom').value;
-    const idClient = document.getElementById('idInscription').value;
-    const email = document.getElementById('email').value;
+const element = document.querySelector('validerBtn');
+if (element) {
+    element.addEventListener('click', function() {
+        // Votre code ici
+        document.getElementById('validerBtn').addEventListener('click', function() {
+            // Récupérer les valeurs des champs
+            const numSuivi = document.getElementById('num_suivi').value;
+            const nom = document.getElementById('leNom').value;
+            const idClient = document.getElementById('idInscription').value;
+            const email = document.getElementById('email').value;
+        
+            // Stocker les informations dans localStorage
+            localStorage.setItem('numSuivi', numSuivi);
+            localStorage.setItem('nom', nom);
+            localStorage.setItem('idClient', idClient);
+            localStorage.setItem('email', email);
+        
+            // Redirection vers la page de suivi
+            window.location.href = 'accueilClient.html';
+        });
+    });
+} else {
+    console.error('Élément non trouvé : #validerBtn');
+}
 
-    // Stocker les informations dans localStorage
-    localStorage.setItem('numSuivi', numSuivi);
-    localStorage.setItem('nom', nom);
-    localStorage.setItem('idClient', idClient);
-    localStorage.setItem('email', email);
-
-    // Redirection vers la page de suivi
-    window.location.href = 'accueilClient.html';
-});

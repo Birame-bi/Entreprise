@@ -90,13 +90,14 @@ input[type="number"] {
 }
 
 .but {
-    width: 10%; /* Ajuste la largeur à 100% */
+    width: 97%; /* Ajuste la largeur à 100% */
     background-color: #046fe9;
     margin-top: 3%;
     padding: 10px;
     font-size: 1.2rem;
     font-family: 'Bookman, URW Bookman L, serif';
     cursor: pointer;
+    color: white;
 }
 
 .button {
